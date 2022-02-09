@@ -2,9 +2,9 @@
 #include <vector>
 using namespace std;
 
-// 左閉右開
+// l, r 左閉右開
 template<typename T>
-void quick_sort(vector<T> &nums, T l, T r) {
+void quick_sort(vector<T> &nums, int l, int r) {
     if (l >= r-1)
         return;
     
@@ -16,17 +16,17 @@ void quick_sort(vector<T> &nums, T l, T r) {
             i++;
         }
     }
-    swap(nums[r-1], nums[i]); // swap pivot to right place
+    swap(nums[r-1], nums[i]);   // swap pivot to right place
 
-    quick_sort(nums, l, i);
-    quick_sort(nums, i+1, r);
+    quick_sort(nums, l, i);     // l ~ i-1
+    quick_sort(nums, i+1, r);   // i+1 ~ r-1
     return;
 }
 
 
 int main() {
     vector<int> a = {1, 5, 3, 6, 0, 45, 454, 3, 43, 4, 4543}; // demo
-    quick_sort(a, 0, (int)a.size());
+    quick_sort(a, 0, a.size());
     for (auto n : a) {
         cout << n << " ";
     }
